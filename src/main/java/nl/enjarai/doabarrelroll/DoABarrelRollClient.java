@@ -15,7 +15,12 @@ public class DoABarrelRollClient implements ClientModInitializer {
 	public static final double TORAD = Math.PI / 180;
 	public static final double TODEG = 1 / TORAD;
 	
-	public static final SmoothUtil yawSmoother = new SmoothUtil();
+	public static final SmoothUtil yawSmoother = new SmoothUtil() {
+		@Override
+		public double smooth(double original, double smoother) {
+			return super.smooth(original, smoother*8);
+		}
+	};
 	public static double lastTurnTime;
 	public static double landingLerp = 1;
 	public static Vec3d left;
